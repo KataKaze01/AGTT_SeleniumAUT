@@ -19,7 +19,7 @@ public class LoginPage extends GeneralPage{
     public WebElement getBtnLogin(){
         return Constant.WEBDRIVER.findElement(_btnLogin);
     }
-    public WebElement getlBlLoginErrorMsg(){
+    public WebElement getLblLoginErrorMsg(){
         return Constant.WEBDRIVER.findElement(_lblLoginErrorMsg);
     }
 
