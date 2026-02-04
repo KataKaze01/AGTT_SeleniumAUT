@@ -1,16 +1,37 @@
 package DataObjects_Railway;
 
-import lombok.Getter;
-
-@Getter
 public class UserAccount {
-    private final String usernameAccount;
-    private final String passwordAccount;
-    private final String pidAccount;
+    private String usernameAccount;
+    private String passwordAccount;
+    private String pidAccount;
 
-    public UserAccount(String usernameAccount, String passwordAccount, String pidAccount){
+    public UserAccount(String usernameAccount, String passwordAccount, String pidAccount) {
         this.usernameAccount = usernameAccount;
         this.passwordAccount = passwordAccount;
+        this.pidAccount = pidAccount;
+    }
+
+    public String getUsernameAccount() {
+        return usernameAccount;
+    }
+
+    public void setUsernameAccount(String usernameAccount) {
+        this.usernameAccount = usernameAccount;
+    }
+
+    public String getPasswordAccount() {
+        return passwordAccount;
+    }
+
+    public void setPasswordAccount(String passwordAccount) {
+        this.passwordAccount = passwordAccount;
+    }
+
+    public String getPidAccount() {
+        return pidAccount;
+    }
+
+    public void setPidAccount(String pidAccount) {
         this.pidAccount = pidAccount;
     }
 }
