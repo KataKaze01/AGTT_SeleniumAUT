@@ -1,6 +1,8 @@
 package Common;
 
+import Constant.Constant;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -47,5 +49,18 @@ public class Utilities {
 
     public static void waitForElementVisibility(WebDriver driver, WebElement element) {
         waitForElementVisibility(driver, element, Duration.ofSeconds(10));
+    }
+
+    public static void scrollToElement(WebElement element){
+        JavascriptExecutor js = (JavascriptExecutor) Constant.WEBDRIVER;
+        js.executeScript("argument[0].scrollIntoView({block: 'center'});", element);
+    }
+
+    public static By waitForClickable(By locator, Duration timeout){
+        return waitForClickable(locator, Constant.TIMEOUT);
+    }
+
+    public static By waitForVisible(By locator, Duration timeout){
+        return waitForVisible(locator, Constant.TIMEOUT);
     }
 }

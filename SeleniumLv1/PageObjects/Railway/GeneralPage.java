@@ -11,6 +11,7 @@ public class GeneralPage {
     private final By tabLogout = By.xpath("//div[@id='menu']//a[@href='/Account/Logout']");
     private final By lblWelcomeMessage = By.xpath("//div[@class='account']/strong");
     private final By lblErrorMessage = By.xpath("//p[contains(@class,'message') and contains(@class,'error')]");
+    private final By tabFAQ = By.xpath("//div[@id='menu']//a[@href='/Page/FAQ.cshtml']");
 
     //Elements
     protected WebElement getTablogin(){
@@ -23,6 +24,7 @@ public class GeneralPage {
         return Constant.WEBDRIVER.findElement(lblWelcomeMessage);
     }
     protected WebElement getLblErrorMessage(){return Constant.WEBDRIVER.findElement(lblErrorMessage);}
+    protected WebElement getTabFAQ(){return Constant.WEBDRIVER.findElement((tabFAQ));}
 
     // Methods
     public String getWelcomeMessage(){
@@ -36,5 +38,15 @@ public class GeneralPage {
     public LoginPage gotoLoginPage(){
         this.getTablogin().click();
         return new LoginPage();
+    }
+
+    public HomePage logout(){
+        getTablogout().click();
+        return new HomePage();
+    }
+
+    public FAQPage gotoFAQPage() {
+        getTabFAQ().click();
+        return new FAQPage();
     }
 }
