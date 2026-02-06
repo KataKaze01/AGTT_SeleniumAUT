@@ -1,5 +1,6 @@
 package Railway;
 
+import Common.Utilities;
 import Constant.Constant;
 import DataObjects_Railway.UserAccount;
 import org.testng.Assert;
@@ -20,7 +21,8 @@ public class CreateAccountTest extends BaseTest {
 
         System.out.println("3. Enter information of the created account in Pre-condition");
         System.out.println("4. Click on \"Register\" button");
-        UserAccount userAccount = new UserAccount(Constant.USERNAME, Constant.PASSWORD, Constant.PID);
+        String pid = Utilities.generateRandomString(8);
+        UserAccount userAccount = new UserAccount(Constant.USERNAME, Constant.PASSWORD, pid);
         registerPage.register(userAccount);
 
         System.out.println("Error message \"This email address is already in use.\" displays above the form.");
@@ -64,6 +66,40 @@ public class CreateAccountTest extends BaseTest {
 
     @Test
     public void TC09(){
+        System.out.println("TC09 - User create and activate account");
+
+        System.out.println("1. Navigate to QA Railway Website");
+        HomePage homePage = new HomePage();
+        homePage.open();
+
+        System.out.println("2. Click on \"Create an account\"");
+        RegisterPage registerPage = homePage.gotoRegisterPage();
+
+        System.out.println("3. Enter valid information into all fields");
+        System.out.println("4. Click on \"Register\" button");
+        String randomEmail = Utilities.generateRandomEmail();
+        UserAccount userAccount = new UserAccount(randomEmail, Constant.USERNAME, Constant.PID);
+        registerPage.register(userAccount);
+
+        System.out.println("\"Thank you for registering your account\" is shown");
+        String actualMsg = registerPage.getLblSuccessMsg().getText();
+        String expectedMsg = "Thank you for registering your account";
+        Assert.assertEquals(actualMsg, expectedMsg);
+
+        System.out.println("5. Get email information (webmail address, mailbox and password) and navigate to that webmail");
+        Utilities.switchToLatestWindow();
+
+        MailPage mailPage = new MailPage();
+        mailPage.open();
+
+        System.out.println("6. Login to the mailbox");
+        System.out.println("7. Open email with subject containing \"Please confirm your account\" and the email of the new account at step 3");
+        System.out.println("8. Click on the activate link");
+        mailPage.confirmMail(randomEmail);
+
+        String activationMsg = homePage.getWelcomeMessage();
+        String expectedActivationMsg = "Registration Confirmed! You can now log in to the site";
+        Assert.assertTrue(activationMsg.contains(expectedActivationMsg));
 
     }
 }

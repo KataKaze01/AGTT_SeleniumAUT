@@ -1,5 +1,6 @@
 package Railway;
 
+import Common.Utilities;
 import Constant.Constant;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -16,19 +17,27 @@ public class GeneralPage {
 
     //Elements
     protected WebElement getTablogin(){
+        Utilities.waitForClickable(tabLogin);
         return Constant.WEBDRIVER.findElement(tabLogin);
     }
     protected WebElement getTabRegister(){
+        Utilities.waitForClickable(tabRegister);
         return Constant.WEBDRIVER.findElement(tabRegister);
     }
     protected WebElement getTablogout(){
+        Utilities.waitForClickable(tabLogout);
         return Constant.WEBDRIVER.findElement(tabLogout);
     }
     protected WebElement getLblWelcomeMessage(){
+        Utilities.waitForClickable(lblWelcomeMessage);
         return Constant.WEBDRIVER.findElement(lblWelcomeMessage);
     }
-    protected WebElement getLblErrorMessage(){return Constant.WEBDRIVER.findElement(lblErrorMessage);}
-    protected WebElement getTabFAQ(){return Constant.WEBDRIVER.findElement((tabFAQ));}
+    protected WebElement getLblErrorMessage(){
+        Utilities.waitForClickable(lblErrorMessage);
+        return Constant.WEBDRIVER.findElement(lblErrorMessage);}
+    protected WebElement getTabFAQ(){
+        Utilities.waitForClickable(tabFAQ);
+        return Constant.WEBDRIVER.findElement((tabFAQ));}
 
     // Methods
     public String getWelcomeMessage(){

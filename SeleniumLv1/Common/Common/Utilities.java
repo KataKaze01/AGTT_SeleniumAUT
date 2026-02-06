@@ -10,6 +10,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.security.SecureRandom;
 import java.time.Duration;
+import java.util.ArrayList;
 
 public class Utilities {
 
@@ -36,7 +37,7 @@ public class Utilities {
         String username = generateRandomString(usernameLength);
 
         // Common email domains
-        String[] domains = {"gmail.com", "yahoo.com", "outlook.com", "example.com"};
+        String[] domains = {"sharklasers.com", "guerrillamail.info", "guerrillamail.biz", "guerrillamail.com", "guerrillamail.de", "guerrillamail.net", "guerrillamail.org", "guerrillamailblock.com"};
         String domain = domains[random.nextInt(domains.length)];
 
         return username + "@" + domain;
@@ -53,14 +54,38 @@ public class Utilities {
 
     public static void scrollToElement(WebElement element){
         JavascriptExecutor js = (JavascriptExecutor) Constant.WEBDRIVER;
-        js.executeScript("argument[0].scrollIntoView({block: 'center'});", element);
+        js.executeScript("arguments[0].scrollIntoView({block: 'center'});", element);
     }
 
+
     public static By waitForClickable(By locator, Duration timeout){
+        WebDriverWait wait = new WebDriverWait(Constant.WEBDRIVER, timeout);
+        wait.until(ExpectedConditions.elementToBeClickable(locator));
+        return locator;
+    }
+
+    public static By waitForClickable(By locator){
         return waitForClickable(locator, Constant.TIMEOUT);
     }
 
     public static By waitForVisible(By locator, Duration timeout){
+        WebDriverWait wait = new WebDriverWait(Constant.WEBDRIVER, timeout);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+        return locator;
+    }
+
+    public static By waitForVisible(By locator){
         return waitForVisible(locator, Constant.TIMEOUT);
+    }
+
+    public static void switchToWindow(int index){
+        ArrayList<String> tabs = new ArrayList<>(Constant.WEBDRIVER.getWindowHandles());
+        Constant.WEBDRIVER.switchTo().window(tabs.get(index));
+    }
+
+    // Switch to latest window
+    public static void switchToLatestWindow(){
+        ArrayList<String> tabs = new ArrayList<>(Constant.WEBDRIVER.getWindowHandles());
+        Constant.WEBDRIVER.switchTo().window(tabs.get(tabs.size() - 1));
     }
 }

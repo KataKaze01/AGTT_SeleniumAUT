@@ -1,5 +1,6 @@
 package Railway;
 
+import Common.Utilities;
 import Constant.Constant;
 import DataObjects_Railway.UserAccount;
 import org.openqa.selenium.By;
@@ -12,15 +13,22 @@ public class LoginPage extends GeneralPage{
     private final By _lblLoginErrorMsg = By.xpath("//p[@class='message error LoginForm']");
 
     public WebElement getTxtUsername(){
+        Utilities.waitForVisible(_txtUsername);
         return Constant.WEBDRIVER.findElement(_txtUsername);
     }
+
     public WebElement getTxtPassword(){
+        Utilities.waitForVisible(_txtPassword);
         return Constant.WEBDRIVER.findElement(_txtPassword);
     }
+
     public WebElement getBtnLogin(){
+        Utilities.waitForClickable(_btnLogin);
         return Constant.WEBDRIVER.findElement(_btnLogin);
     }
+
     public WebElement getLblLoginErrorMsg(){
+        Utilities.waitForVisible(_lblLoginErrorMsg);
         return Constant.WEBDRIVER.findElement(_lblLoginErrorMsg);
     }
 
