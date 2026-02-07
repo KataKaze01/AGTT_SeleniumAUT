@@ -6,7 +6,7 @@ import DataObjects_Railway.UserAccount;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
-public class RegisterPage {
+public class RegisterPage extends GeneralPage {
     private final By _txtEmail = By.xpath("//input[@id='email']");
     private final By _txtPassword = By.xpath("//input[@id='password']");
     private final By _txtConfirmPassword = By.xpath("//input[@id='confirmPassword']");
@@ -62,11 +62,8 @@ public class RegisterPage {
         return Constant.WEBDRIVER.findElement(_lblPìdErrorMsg);
     }
 
-
-
     public String getPasswordErrorMsg(){return this.getLblPasswordErrorMsg().getText();}
     public String getPidErrorMsg(){return this.getLblPidErrorMsg().getText();}
-
 
     public HomePage register(UserAccount userAccount){
         getTxtEmail().sendKeys(userAccount.getUsernameAccount());

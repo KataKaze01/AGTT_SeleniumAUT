@@ -61,5 +61,4 @@ public class MailPage extends GeneralPage {
 
         return this;
     }
-
 }
