@@ -16,50 +16,45 @@ public class RegisterPage extends GeneralPage {
     private final By _lblRegisterSuccessMsg = By.xpath("//div[@id='content']/h1");
     private final By _lblPasswordErrorMsg = By.xpath("//input[@id='password']/following-sibling::label[contains(@class,'validation-error')]");
     private final By _lblPìdErrorMsg = By.xpath("//input[@id='pid']/following-sibling::label[contains(@class,'validation-error')]");
+    private final By lblRegistrationConfirmedMsg = By.xpath("//div[@id='content']/p");
 
     public WebElement getTxtEmail(){
-        Utilities.waitForVisible(_txtEmail);
-        return Constant.WEBDRIVER.findElement(_txtEmail);
+        return Utilities.waitForVisible(_txtEmail);
     }
 
     public WebElement getTxtPassword(){
-        Utilities.waitForVisible(_txtPassword);
-        return Constant.WEBDRIVER.findElement(_txtPassword);
+        return Utilities.waitForVisible(_txtPassword);
     }
 
     public WebElement getTxtConfirmPassword(){
-        Utilities.waitForVisible(_txtConfirmPassword);
-        return Constant.WEBDRIVER.findElement(_txtConfirmPassword);
+        return Utilities.waitForVisible(_txtConfirmPassword);
     }
 
     public WebElement getTxtPid(){
-        Utilities.waitForVisible(_txtPid);
-        return Constant.WEBDRIVER.findElement(_txtPid);
+        return Utilities.waitForVisible(_txtPid);
     }
 
     public WebElement getBtnRegister(){
-        Utilities.waitForClickable(_btnRegister);
-        return Constant.WEBDRIVER.findElement(_btnRegister);
+        return Utilities.waitForVisible(_btnRegister);
     }
 
     protected WebElement getLblRegisterErrorMsg(){
-        Utilities.waitForVisible(_lblRegisterErrorMsg);
-        return Constant.WEBDRIVER.findElement(_lblRegisterErrorMsg);
+        return Utilities.waitForVisible(_lblRegisterErrorMsg);
     }
 
     protected WebElement getLblPasswordErrorMsg(){
-        Utilities.waitForVisible(_lblPasswordErrorMsg);
-        return Constant.WEBDRIVER.findElement(_lblPasswordErrorMsg);
+        return Utilities.waitForVisible(_lblPasswordErrorMsg);
     }
 
     protected WebElement getLblSuccessMsg(){
-        Utilities.waitForVisible(_lblRegisterSuccessMsg);
-        return Constant.WEBDRIVER.findElement(_lblRegisterSuccessMsg);
+        return Utilities.waitForVisible(_lblRegisterSuccessMsg);
     }
 
     protected WebElement getLblPidErrorMsg(){
-        Utilities.waitForVisible(_lblPìdErrorMsg);
-        return Constant.WEBDRIVER.findElement(_lblPìdErrorMsg);
+        return Utilities.waitForVisible(_lblPìdErrorMsg);
+    }
+    protected WebElement getLblRegistrationConfirmedMsg(){
+        return Utilities.waitForVisible(lblRegistrationConfirmedMsg);
     }
 
     public String getPasswordErrorMsg(){return this.getLblPasswordErrorMsg().getText();}

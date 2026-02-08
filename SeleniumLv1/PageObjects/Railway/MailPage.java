@@ -12,7 +12,7 @@ public class MailPage extends GeneralPage {
     private final By txtText = By.xpath("//span[@id='inbox-id']//input[@type='text']");
     private final By btnSet = By.xpath("//button[@class='save button small']");
     private final By cbbScrambleAddress = By.xpath("//span[@id='alias-box']/input");
-    private final By confirmEmail = By.xpath("//tbody[@id='email_list']/tr[1]");
+    private final By confirmEmail = By.xpath("//td[contains(., 'confirm')]");
     private final By confirmLinkAccount = By.xpath("//div[@class='email_body']//a[contains(@href, 'Account/Confirm')]");
 
     public WebElement getBtnClickToEdit(){
@@ -41,7 +41,7 @@ public class MailPage extends GeneralPage {
     }
 
     public WebElement getConfirmLinkAccount(){
-        Utilities.waitForVisible(confirmLinkAccount);
+//        Utilities.waitForVisible(confirmLinkAccount);
         return Constant.WEBDRIVER.findElement(confirmLinkAccount);
     }
 
@@ -50,15 +50,19 @@ public class MailPage extends GeneralPage {
         return this;
     }
 
-    public MailPage confirmMail(String emailAddress){
+    public RegisterPage confirmMail(String emailAddress){
         String username = emailAddress.split("@")[0];
         getBtnClickToEdit().click();
         getTxtText().clear();
         getTxtText().sendKeys(username);
         getBtnSet().click();
-        getConfirmEmail().click();
-        getConfirmLinkAccount();
+//        getConfirmEmail().click();
+        Utilities.waitForVisible(confirmEmail).click();
+//        getConfirmLinkAccount().click();
+        Utilities.waitForVisible(confirmLinkAccount).click();
 
-        return this;
+        Utilities.switchToLatestWindow();
+
+        return new RegisterPage();
     }
 }

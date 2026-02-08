@@ -1,10 +1,7 @@
 package Common;
 
 import Constant.Constant;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -68,14 +65,26 @@ public class Utilities {
         return waitForClickable(locator, Constant.TIMEOUT);
     }
 
-    public static By waitForVisible(By locator, Duration timeout){
-        WebDriverWait wait = new WebDriverWait(Constant.WEBDRIVER, timeout);
-        wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
-        return locator;
-    }
+//    public static By waitForVisible(By locator, Duration timeout){
+//        WebDriverWait wait = new WebDriverWait(Constant.WEBDRIVER, timeout);
+//        wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+//        return locator;
+//    }
+//
+//    public static By waitForVisible(By locator){
+//        return waitForVisible(locator, Constant.TIMEOUT);
+//    }
 
-    public static By waitForVisible(By locator){
-        return waitForVisible(locator, Constant.TIMEOUT);
+    public static WebElement waitForVisible(By locator) {
+        WebDriverWait wait = new WebDriverWait(Constant.WEBDRIVER, Constant.TIMEOUT);
+
+        try {
+            return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+        } catch (TimeoutException e) {
+            Constant.WEBDRIVER.navigate().refresh();
+
+            return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+        }
     }
 
     public static void switchToWindow(int index){

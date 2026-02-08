@@ -95,11 +95,11 @@ public class CreateAccountTest extends BaseTest {
         System.out.println("6. Login to the mailbox");
         System.out.println("7. Open email with subject containing \"Please confirm your account\" and the email of the new account at step 3");
         System.out.println("8. Click on the activate link");
-        mailPage.confirmMail(randomEmail);
+        registerPage = mailPage.confirmMail(randomEmail);
 
-        String activationMsg = homePage.getWelcomeMessage();
-        String expectedActivationMsg = "Registration Confirmed! You can now log in to the site";
-        Assert.assertTrue(activationMsg.contains(expectedActivationMsg));
+        String activationMsg = registerPage.getLblRegistrationConfirmedMsg().getText();
+        String expectedActivationMsg = "Registration Confirmed! You can now log in to the site.";
+        Assert.assertEquals(activationMsg, expectedActivationMsg);
 
     }
 }
